@@ -1,0 +1,243 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d0d8d0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    box-sizing: border-box;
+    overflow-x: hidden;  
+    flex-direction: column;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 20px;
+    word-wrap: break-word; 
+}
+
+.instagram-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instagram-icon {
+    width: 30px; 
+    height: 30px; 
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #af4b3e;
+    font-size: 16px;
+
+}
+
+/* Formulário */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+/* Estilos dos labels e inputs */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    width: 100%;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /
+}
+
+/* Botão */
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #2b722e;
+}
+
+.reset {
+    background-color: #e05846;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+    margin: 10px;
+    border-radius: 4px;
+    width: 370px;
+}
+
+.reset:hover {
+    background-color: #971509;
+}
+
+/* Resultado */
+#resultado {
+    background-color: #f0dccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 350px;
+    max-width: 350px; 
+    text-align: center;
+}
+
+#resultado p {
+    font-size: 18px;
+    color: #555;
+}
+
+#resultado span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Rodape */
+
+p {
+    font-size: 14px;
+    align-items: center;
+}
+
+/* Responsividade - Media Queries */
+
+/* Para telas muito pequenas (menos de 440px) */
+@media (max-width: 440px) {
+    body {
+        height: auto;
+    }
+
+    h1 {
+        font-size: 18px; 
+        margin-bottom: 15px;
+    }
+
+    form {
+        padding: 12px; /
+    }
+
+    input, select, button {
+        padding: 8px; 
+    }
+    button {
+        font-size: 14px; 
+    }
+    #resultado p {
+        font-size: 14px; 
+}
+
+p {
+    font-size: 12px;
+}
+
+/* Para telas pequenas (como smartphones) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px; 
+        margin-bottom: 15px;
+    }
+
+    form {
+        padding: 16px;
+    }
+
+    input, select, button {
+        padding: 9px;
+    }
+
+    button {
+        font-size: 15px;
+    }
+
+    #resultado p {
+        font-size: 16px;
+    }
+
+    body {
+        height: auto;
+    }
+
+}
+
+/* Para telas de tablet (a partir de 600px) */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+    }
+    
+    h1 {
+        font-size: 26px;
+    }
+
+    form {
+        padding: 18px;
+    }
+
+    input, select, button {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+
+    #resultado p {
+        font-size: 18px;
+    }
+}
+
+/* Para telas maiores, como desktop */
+@media (min-width: 1024px) {
+    body {
+        height: auto;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    form {
+        max-width: 600px;
+    }
+
+    input, select, button {
+        font-size: 18px;
+    }
+
+    #resultado p {
+        font-size: 20px;
+    }
+}
+
+
+}
