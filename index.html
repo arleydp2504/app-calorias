@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Calorias</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div>
         <h1>Calculadora de Calorias</h1>
-        <a href="https://www.instagram.com/arleypereira_personal/" target="_blank" rel="noopener noreferrer" class="instagram-link">
+        <a href="https://www.instagram.com/arleypereira_personal/" target="_blank" rel="noopener noreferrer"
+            class="instagram-link">
             <img src="img/instagram.png" alt="Instagram" class="instagram-icon">Arley Personal
         </a>
 
@@ -59,16 +62,21 @@
             <label for="tempo">Tempo de Exercício (minutos):</label>
             <input type="number" id="tempo" required><br>
 
+            <label for="calorias-ingeridas">Calorias Ingeridas:</label>
+            <input type="number" id="calorias-ingeridas" required><br>
+
+
             <button type="submit">Calcular</button>
         </form>
 
         <div id="resultado">
             <h2>Resultado</h2>
             <p>Metabolismo Basal: <span id="metabolismo">0</span> kcal</p>
-            <p>Calorias Queimadas: <span id="calorias-exercicio">0</span> kcal</p>
-            <p>Total de Calorias: <span id="total-calorias">0</span> kcal</p>
+            <p>Calorias Queimadas no Exercício: <span id="calorias-exercicio">0</span> kcal</p>
+            <p>Calorias Gastas Totais: <span id="calorias-gastas-totais">0</span> kcal</p>
+            <p>Déficit Calórico: <span id="deficit-calorico">0</span> kcal</p>
         </div>
-
+        
         <!-- Botão de Reset -->
         <button class="reset" type="button" id="reset-btn">Apagar</button>
     </div>
@@ -81,13 +89,7 @@
 
     </footer>
 
-    <script src="script.js"></script> 
+    <script src="script.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-
-
