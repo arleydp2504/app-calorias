@@ -25,8 +25,35 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
         metabolismoBasal = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
     }
 
-    // Estimar calorias queimadas no exercício (simplificação)
-    var caloriasExercicio = (treinamento === 'corrida' ? 0.08 : 0.05) * peso * tempoExercicio;
+    // Tabela de METs para atividades físicas
+    const mets = {
+        "corrida": 9.8,
+        "musculacao": 3.5,
+        "natacao": 7.0,
+        "caminhada": 3.8,
+        "ciclismo": 7.5,
+        "hiit": 12.0,
+        "danca": 6.0,
+        "boxe": 8.0,
+        "treinamento_funcional": 6.5,
+        "yoga": 2.5,
+        "pilates": 3.0,
+        "escalada": 7.5,
+        "futebol": 7.0,
+        "basquete": 6.0,
+        "volei": 4.0,
+        "ski": 7.5,
+        "surf": 5.0,
+        "futevolei": 7.0,
+        "beach tennis": 6.5
+    };
+
+    // Obter o MET da atividade selecionada
+    var met = mets[treinamento];
+
+    // Estimar calorias queimadas no exercício com base no MET
+    var tempoExercicioHoras = tempoExercicio / 60; // Convertendo minutos para horas
+    var caloriasExercicio = met * peso * tempoExercicioHoras;
 
     // Exibir os resultados parciais
     document.getElementById('metabolismo').innerText = metabolismoBasal.toFixed(2);
@@ -72,6 +99,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     // Resetar a cor do déficit calórico para o estado inicial (preto)
     document.getElementById('deficit-calorico').style.color = 'black';
 });
+
 
 
 
