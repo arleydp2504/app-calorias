@@ -25,7 +25,19 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
         metabolismoBasal = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
     }
 
-    // Tabela de METs para atividades físicas
+    // Definir o fator de calorias por batimento, de acordo com o sexo
+    var fatorCaloriasPorBatimento;
+    if (sexo === 'masculino') {
+        fatorCaloriasPorBatimento = 0.6309; // Fator para homens
+    } else {
+        fatorCaloriasPorBatimento = 0.4472; // Fator para mulheres
+    }
+
+    // Calcular a queima calórica baseada nos batimentos cardíacos (fórmula anterior)
+    var tempoExercicioHoras = tempoExercicio / 60; // Convertendo minutos para horas
+    var caloriasExercicioPorBatimentos = batimento * peso * tempoExercicioHoras * fatorCaloriasPorBatimento;
+
+    // Tabela MET para diferentes atividades
     const mets = {
         "corrida": 9.8,
         "musculacao": 3.5,
@@ -51,13 +63,21 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     // Obter o MET da atividade selecionada
     var met = mets[treinamento];
 
-    // Estimar calorias queimadas no exercício com base no MET
-    var tempoExercicioHoras = tempoExercicio / 60; // Convertendo minutos para horas
-    var caloriasExercicio = met * peso * tempoExercicioHoras;
+    // Calcular o gasto calórico com base no MET
+    var caloriasExercicioComMET = met * peso * tempoExercicioHoras;
+
+    var fcMax = 220 - idade; 
+    var intensidade = (batimento / fcMax) * 100; 
+
+    if (intensidade >= 80) {
+        caloriasExercicioComMET *= 1.2;  // Aumento de 20% se a intensidade for maior que 80% da FCmáx
+    } else if (intensidade >= 60) {
+        caloriasExercicioComMET *= 1.1;  // Aumento de 10% se a intensidade for entre 60% e 80% da FCmáx
+    }
 
     // Exibir os resultados parciais
     document.getElementById('metabolismo').innerText = metabolismoBasal.toFixed(2);
-    document.getElementById('calorias-exercicio').innerText = caloriasExercicio.toFixed(2);
+    document.getElementById('calorias-exercicio').innerText = caloriasExercicioComMET.toFixed(2);
 
     // Cálculo de calorias gastas no trabalho
     var atividade = parseFloat(document.getElementById('atividade').value);
@@ -66,39 +86,38 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     var caloriasTrabalho = atividade * peso * tempoTrabalho;
 
     // Calcular calorias gastas totais
-    var caloriasGastasTotais = metabolismoBasal + caloriasExercicio + caloriasTrabalho;
+    var caloriasGastasTotais = metabolismoBasal + caloriasExercicioComMET + caloriasTrabalho;
     var deficitCalorico = caloriasGastasTotais - caloriasIngeridas;
 
     // Exibir o resultado final
     document.getElementById('calorias-trabalho').innerText = caloriasTrabalho.toFixed(2);
-    document.getElementById('calorias-exercicio').innerText = caloriasExercicio.toFixed(2);
+    document.getElementById('calorias-exercicio').innerText = caloriasExercicioComMET.toFixed(2);
     document.getElementById('calorias-gastas-totais').innerText = caloriasGastasTotais.toFixed(2);
     document.getElementById('deficit-calorico').innerText = deficitCalorico.toFixed(2);
 
     // Alterar a cor do déficit calórico baseado no valor
     var deficitElement = document.getElementById('deficit-calorico');
     if (deficitCalorico < 0) {
-        deficitElement.style.color = 'red'; // Déficit negativo (vermelho)
+        deficitElement.style.color = 'red'; 
     } else {
-        deficitElement.style.color = 'green'; // Déficit positivo (verde)
+        deficitElement.style.color = 'green'; 
     }
 });
 
 // Função de reset para limpar os campos e resultados
 document.getElementById('reset-btn').addEventListener('click', function() {
-    // Resetar os campos do formulário de calorias
     document.getElementById('form-calorias').reset();
     
-    // Resetar os resultados na tela para '0'
     document.getElementById('metabolismo').innerText = '0';
     document.getElementById('calorias-exercicio').innerText = '0';
     document.getElementById('calorias-trabalho').innerText = '0';
     document.getElementById('calorias-gastas-totais').innerText = '0';
     document.getElementById('deficit-calorico').innerText = '0';
 
-    // Resetar a cor do déficit calórico para o estado inicial (preto)
     document.getElementById('deficit-calorico').style.color = 'black';
 });
+
+
 
 
 
