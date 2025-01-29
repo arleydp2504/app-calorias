@@ -39,8 +39,8 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 
     // Tabela MET para diferentes atividades
     const mets = {
-        "corrida": 9.8,
-        "musculacao": 3.5,
+        "corrida": 8.2,
+        "musculacao": 4.7,
         "natacao": 7.0,
         "caminhada": 3.8,
         "ciclismo": 7.5,
@@ -54,7 +54,7 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
         "futebol": 7.0,
         "basquete": 6.0,
         "volei": 4.0,
-        "ski": 7.5,
+        "tenis": 7.0,
         "surf": 5.0,
         "futevolei": 7.0,
         "beach tennis": 6.5
