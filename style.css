@@ -131,7 +131,7 @@ p {
 
 /* Responsividade - Media Queries */
 
-/* Para telas muito pequenas (menos de 440px) */
+/* Para telas muito pequenas */
 @media (max-width: 440px) {
     body {
         height: auto;
@@ -160,7 +160,7 @@ p {
     font-size: 12px;
 }
 
-/* Para telas pequenas (como smartphones) */
+/* Para telas pequenas */
 @media (max-width: 600px) {
     h1 {
         font-size: 24px; 
@@ -189,7 +189,7 @@ p {
 
 }
 
-/* Para telas de tablet (a partir de 600px) */
+/* Para telas de tablet */
 @media (max-width: 768px) {
     body {
         height: auto;
@@ -216,7 +216,7 @@ p {
     }
 }
 
-/* Para telas maiores, como desktop */
+/* Para telas maiores */
 @media (min-width: 1024px) {
     body {
         height: auto;

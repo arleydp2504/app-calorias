@@ -1,7 +1,6 @@
 document.getElementById('form-calorias').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Obter os valores do formulário de calorias para exercício
     var peso = parseFloat(document.getElementById('peso').value);
     var altura = parseFloat(document.getElementById('altura').value);
     var idade = parseFloat(document.getElementById('idade').value);
@@ -11,7 +10,6 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     var tempoExercicio = parseFloat(document.getElementById('tempo-exercicio').value);
     var caloriasIngeridas = parseFloat(document.getElementById('calorias-ingeridas').value);
 
-    // Verificar se os campos estão preenchidos corretamente
     if (isNaN(peso) || isNaN(altura) || isNaN(idade) || isNaN(batimento) || isNaN(tempoExercicio) || isNaN(caloriasIngeridas)) {
         alert('Por favor, insira valores válidos.');
         return;
@@ -28,16 +26,15 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     // Definir o fator de calorias por batimento, de acordo com o sexo
     var fatorCaloriasPorBatimento;
     if (sexo === 'masculino') {
-        fatorCaloriasPorBatimento = 0.6309; // Fator para homens
+        fatorCaloriasPorBatimento = 0.6309; 
     } else {
-        fatorCaloriasPorBatimento = 0.4472; // Fator para mulheres
+        fatorCaloriasPorBatimento = 0.4472; 
     }
 
     // Calcular a queima calórica baseada nos batimentos cardíacos (fórmula anterior)
-    var tempoExercicioHoras = tempoExercicio / 60; // Convertendo minutos para horas
+    var tempoExercicioHoras = tempoExercicio / 60; 
     var caloriasExercicioPorBatimentos = batimento * peso * tempoExercicioHoras * fatorCaloriasPorBatimento;
 
-    // Tabela MET para diferentes atividades
     const mets = {
         "corrida": 8.2,
         "musculacao": 4.7,
@@ -60,10 +57,8 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
         "beach tennis": 6.5
     };
 
-    // Obter o MET da atividade selecionada
     var met = mets[treinamento];
 
-    // Calcular o gasto calórico com base no MET
     var caloriasExercicioComMET = met * peso * tempoExercicioHoras;
 
     var fcMax = 220 - idade; 
@@ -71,31 +66,26 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 
     if (intensidade >= 80) {
         caloriasExercicioComMET *= 1.2;  // Aumento de 20% se a intensidade for maior que 80% da FCmáx
-    } else if (intensidade >= 60) {
-        caloriasExercicioComMET *= 1.1;  // Aumento de 10% se a intensidade for entre 60% e 80% da FCmáx
+    } else if (intensidade >= 50) {
+        caloriasExercicioComMET *= 1.1;  // Aumento de 10% se a intensidade for entre 50% e 80% da FCmáx
     }
 
-    // Exibir os resultados parciais
     document.getElementById('metabolismo').innerText = metabolismoBasal.toFixed(2);
     document.getElementById('calorias-exercicio').innerText = caloriasExercicioComMET.toFixed(2);
 
-    // Cálculo de calorias gastas no trabalho
     var atividade = parseFloat(document.getElementById('atividade').value);
     var tempoTrabalho = parseFloat(document.getElementById('tempo-trabalho').value);
 
     var caloriasTrabalho = atividade * peso * tempoTrabalho;
 
-    // Calcular calorias gastas totais
     var caloriasGastasTotais = metabolismoBasal + caloriasExercicioComMET + caloriasTrabalho;
     var deficitCalorico = caloriasIngeridas - caloriasGastasTotais;
 
-    // Exibir o resultado final
     document.getElementById('calorias-trabalho').innerText = caloriasTrabalho.toFixed(2);
     document.getElementById('calorias-exercicio').innerText = caloriasExercicioComMET.toFixed(2);
     document.getElementById('calorias-gastas-totais').innerText = caloriasGastasTotais.toFixed(2);
     document.getElementById('deficit-calorico').innerText = deficitCalorico.toFixed(2);
 
-    // Alterar a palavra 'déficit calórico' para 'superávit calórico' se o valor for positivo
     var deficitElement = document.getElementById('deficit-calorico');
     if (deficitCalorico < 0) {
         deficitElement.style.color = 'red'; 
@@ -106,37 +96,34 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     }
 
     // Cálculo do IMC
-    var alturaEmMetros = altura / 100; // Convertendo altura para metros
-    var imc = peso / (alturaEmMetros * alturaEmMetros); // Fórmula do IMC
-
-    // Exibir o IMC
+    var alturaEmMetros = altura / 100; 
+    var imc = peso / (alturaEmMetros * alturaEmMetros); 
     var imcElement = document.getElementById('imc');
     imcElement.innerText = imc.toFixed(2);
 
-    // Exibir a descrição do IMC
     var imcDescricao = document.getElementById('imc-descricao');
     if (imc < 18.5) {
-        imcElement.style.color = 'blue'; // Abaixo do peso
+        imcElement.style.color = 'blue'; 
         imcDescricao.innerText = 'Abaixo do peso (IMC < 18.5)';
         imcDescricao.style.color = 'blue';
     } else if (imc >= 18.5 && imc <= 24.9) {
-        imcElement.style.color = 'green'; // Peso normal
+        imcElement.style.color = 'green'; 
         imcDescricao.innerText = 'Peso normal (IMC entre 18.5 e 24.9)';
         imcDescricao.style.color = 'green';
     } else if (imc >= 25 && imc <= 29.9) {
-        imcElement.style.color = 'orange'; // Sobrepeso
+        imcElement.style.color = 'orange'; 
         imcDescricao.innerText = 'Sobrepeso (IMC entre 25 e 29.9)';
         imcDescricao.style.color = 'orange';
     } else if (imc >= 30 && imc <= 34.9) {
-        imcElement.style.color = 'red'; // Obesidade grau 1
+        imcElement.style.color = 'red'; 
         imcDescricao.innerText = 'Obesidade grau 1 (IMC entre 30 e 34.9)';
         imcDescricao.style.color = 'red';
     } else if (imc >= 35 && imc <= 39.9) {
-        imcElement.style.color = 'darkred'; // Obesidade grau 2
+        imcElement.style.color = 'darkred'; 
         imcDescricao.innerText = 'Obesidade grau 2 (IMC entre 35 e 39.9)';
         imcDescricao.style.color = 'darkred';
     } else {
-        imcElement.style.color = 'purple'; // Obesidade grau 3
+        imcElement.style.color = 'purple'; 
         imcDescricao.innerText = 'Obesidade grau 3 (IMC >= 40)';
         imcDescricao.style.color = 'purple';
     }
@@ -151,12 +138,12 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('calorias-trabalho').innerText = '0';
     document.getElementById('calorias-gastas-totais').innerText = '0';
     document.getElementById('deficit-calorico').innerText = '0';
-    document.getElementById('imc').innerText = '0'; // Limpar o IMC
-    document.getElementById('imc-descricao').innerText = ''; // Limpar a descrição do IMC
+    document.getElementById('imc').innerText = '0'; 
+    document.getElementById('imc-descricao').innerText = ''; 
 
     document.getElementById('deficit-calorico').style.color = 'black';
-    document.getElementById('imc').style.color = 'black'; // Limpar a cor do IMC
-    document.getElementById('imc-descricao').style.color = 'black'; // Limpar a cor da descrição
+    document.getElementById('imc').style.color = 'black'; 
+    document.getElementById('imc-descricao').style.color = 'black'; 
 });
 
 
