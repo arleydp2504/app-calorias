@@ -87,7 +87,7 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 
     // Calcular calorias gastas totais
     var caloriasGastasTotais = metabolismoBasal + caloriasExercicioComMET + caloriasTrabalho;
-    var deficitCalorico = caloriasGastasTotais - caloriasIngeridas;
+    var deficitCalorico = caloriasIngeridas - caloriasGastasTotais;
 
     // Exibir o resultado final
     document.getElementById('calorias-trabalho').innerText = caloriasTrabalho.toFixed(2);
@@ -95,12 +95,50 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     document.getElementById('calorias-gastas-totais').innerText = caloriasGastasTotais.toFixed(2);
     document.getElementById('deficit-calorico').innerText = deficitCalorico.toFixed(2);
 
-    // Alterar a cor do déficit calórico baseado no valor
+    // Alterar a palavra 'déficit calórico' para 'superávit calórico' se o valor for positivo
     var deficitElement = document.getElementById('deficit-calorico');
     if (deficitCalorico < 0) {
         deficitElement.style.color = 'red'; 
+        deficitElement.innerText = 'Déficit Calórico: ' + deficitCalorico.toFixed(2);
     } else {
-        deficitElement.style.color = 'green'; 
+        deficitElement.style.color = 'green';
+        deficitElement.innerText = 'Superávit Calórico: ' + deficitCalorico.toFixed(2);
+    }
+
+    // Cálculo do IMC
+    var alturaEmMetros = altura / 100; // Convertendo altura para metros
+    var imc = peso / (alturaEmMetros * alturaEmMetros); // Fórmula do IMC
+
+    // Exibir o IMC
+    var imcElement = document.getElementById('imc');
+    imcElement.innerText = imc.toFixed(2);
+
+    // Exibir a descrição do IMC
+    var imcDescricao = document.getElementById('imc-descricao');
+    if (imc < 18.5) {
+        imcElement.style.color = 'blue'; // Abaixo do peso
+        imcDescricao.innerText = 'Abaixo do peso (IMC < 18.5)';
+        imcDescricao.style.color = 'blue';
+    } else if (imc >= 18.5 && imc <= 24.9) {
+        imcElement.style.color = 'green'; // Peso normal
+        imcDescricao.innerText = 'Peso normal (IMC entre 18.5 e 24.9)';
+        imcDescricao.style.color = 'green';
+    } else if (imc >= 25 && imc <= 29.9) {
+        imcElement.style.color = 'orange'; // Sobrepeso
+        imcDescricao.innerText = 'Sobrepeso (IMC entre 25 e 29.9)';
+        imcDescricao.style.color = 'orange';
+    } else if (imc >= 30 && imc <= 34.9) {
+        imcElement.style.color = 'red'; // Obesidade grau 1
+        imcDescricao.innerText = 'Obesidade grau 1 (IMC entre 30 e 34.9)';
+        imcDescricao.style.color = 'red';
+    } else if (imc >= 35 && imc <= 39.9) {
+        imcElement.style.color = 'darkred'; // Obesidade grau 2
+        imcDescricao.innerText = 'Obesidade grau 2 (IMC entre 35 e 39.9)';
+        imcDescricao.style.color = 'darkred';
+    } else {
+        imcElement.style.color = 'purple'; // Obesidade grau 3
+        imcDescricao.innerText = 'Obesidade grau 3 (IMC >= 40)';
+        imcDescricao.style.color = 'purple';
     }
 });
 
@@ -113,10 +151,13 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('calorias-trabalho').innerText = '0';
     document.getElementById('calorias-gastas-totais').innerText = '0';
     document.getElementById('deficit-calorico').innerText = '0';
+    document.getElementById('imc').innerText = '0'; // Limpar o IMC
+    document.getElementById('imc-descricao').innerText = ''; // Limpar a descrição do IMC
 
     document.getElementById('deficit-calorico').style.color = 'black';
+    document.getElementById('imc').style.color = 'black'; // Limpar a cor do IMC
+    document.getElementById('imc-descricao').style.color = 'black'; // Limpar a cor da descrição
 });
-
 
 
 

@@ -17,7 +17,6 @@
             <img src="img/instagram.png" alt="Instagram" class="instagram-icon">Arley Personal
         </a>
 
-
         <!-- Formulário de entrada para as calorias gastas com exercício -->
         <form id="form-calorias">
             <label for="peso">Peso (kg):</label>
@@ -66,6 +65,7 @@
 
             <label for="calorias-ingeridas">Calorias Ingeridas:</label>
             <input type="number" id="calorias-ingeridas" required><br>
+            
             <label for="atividade">Selecione a Atividade no trabalho:</label>
             <select id="atividade" required>
                 <option value="1.3">Leve (Sentado, trabalho de escritório)</option>
@@ -86,8 +86,10 @@
             <p>Calorias Gastas no Exercício: <span id="calorias-exercicio">0</span> kcal</p>
             <p>Calorias Gastas no Trabalho: <span id="calorias-trabalho">0</span> kcal</p>
             <p>Calorias Gastas Totais: <span id="calorias-gastas-totais">0</span> kcal</p>
-            <p>Déficit Calórico: <span id="deficit-calorico">0</span> kcal</p>
-        </div>
+            <p><span id="deficit-calorico">0</span> kcal</p>
+            <p>IMC: <span id="imc">0</span></p>
+            <p id="imc-descricao"></p> <!-- Adicionado para exibir a descrição do IMC -->
+                    </div>
         
         <!-- Botão de Reset -->
         <button class="reset" type="button" id="reset-btn">Apagar</button>
@@ -104,6 +106,7 @@
 </body>
 
 </html>
+
 
 
 
