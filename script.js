@@ -89,10 +89,10 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 
     var deficitElement = document.getElementById('deficit-calorico');
     if (deficitCalorico < 0) {
-        deficitElement.style.color = 'red'; 
+        deficitElement.style.color = 'green'; 
         deficitElement.innerText = 'Déficit Calórico: ' + deficitCalorico.toFixed(2);
     } else {
-        deficitElement.style.color = 'green';
+        deficitElement.style.color = 'red';
         deficitElement.innerText = 'Superávit Calórico: ' + deficitCalorico.toFixed(2);
     }
 
@@ -142,9 +142,6 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('imc').innerText = '0'; 
     document.getElementById('imc-descricao').innerText = ''; 
 
-    document.getElementById('deficit-calorico').style.color = 'black';
-    document.getElementById('imc').style.color = 'black'; 
-    document.getElementById('imc-descricao').style.color = 'black'; 
 });
 
 
