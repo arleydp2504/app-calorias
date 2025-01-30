@@ -54,7 +54,8 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
         "tenis": 7.0,
         "surf": 5.0,
         "futevolei": 7.0,
-        "beach tennis": 6.5
+        "beach tennis": 6.5,
+        "crossfit": 7.0
     };
 
     var met = mets[treinamento];

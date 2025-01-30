@@ -129,7 +129,6 @@ p {
     align-items: center;
 }
 
-/* Responsividade - Media Queries */
 
 /* Para telas muito pequenas */
 @media (max-width: 440px) {
