@@ -7,11 +7,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-    width: auto;
-    box-sizing: border-box;
-    overflow-x: hidden;  
     flex-direction: column;
+    min-height: 100vh;  /* Garantir que ocupe a altura total da tela */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Títulos */
@@ -39,7 +38,6 @@ a {
     text-decoration: none;
     color: #af4b3e;
     font-size: 16px;
-
 }
 
 /* Formulário */
@@ -59,9 +57,6 @@ label {
     margin-bottom: 8px;
     font-weight: bold;
     width: 100%;
-    align-items: center;
-    justify-content: center;
-
 }
 
 input, select, button {
@@ -71,7 +66,6 @@ input, select, button {
     border-radius: 4px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    
 }
 
 /* Botão */
@@ -96,9 +90,7 @@ button:hover {
     cursor: pointer;
     border: none;
     transition: background-color 0.3s;
-    margin: 15px;
     border-radius: 4px;
-    width: 370px;
 }
 
 .reset:hover {
@@ -108,12 +100,11 @@ button:hover {
 /* Resultado */
 #resultado {
     background-color: #f0dccc;
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    width: 360px;
-    max-width: 360px; 
+    width: 100%;
+    max-width: auto;
     text-align: center;
 }
 
@@ -128,17 +119,15 @@ button:hover {
 }
 
 /* Rodape */
-
 p {
     font-size: 14px;
-    align-items: center;
+    text-align: center;
 }
-
 
 /* Para telas muito pequenas */
 @media (max-width: 440px) {
     body {
-        height: auto;
+        padding: 0 10px;  /* Ajusta o padding lateral */
     }
 
     h1 {
@@ -147,21 +136,24 @@ p {
     }
 
     form {
-        padding: 12px; /
+        padding: 12px;
     }
 
     input, select, button {
         padding: 8px; 
     }
+
     button {
         font-size: 14px; 
     }
+
     #resultado p {
         font-size: 14px; 
-}
+    }
 
-p {
-    font-size: 12px;
+    p {
+        font-size: 12px;
+    }
 }
 
 /* Para telas pequenas */
@@ -186,19 +178,10 @@ p {
     #resultado p {
         font-size: 16px;
     }
-
-    body {
-        height: auto;
-    }
-
 }
 
 /* Para telas de tablet */
 @media (max-width: 768px) {
-    body {
-        height: auto;
-    }
-    
     h1 {
         font-size: 26px;
     }
@@ -222,10 +205,6 @@ p {
 
 /* Para telas maiores */
 @media (min-width: 1024px) {
-    body {
-        height: auto;
-    }
-
     h1 {
         font-size: 32px;
     }
@@ -241,7 +220,4 @@ p {
     #resultado p {
         font-size: 20px;
     }
-}
-
-
 }
