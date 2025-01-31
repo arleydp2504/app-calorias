@@ -45,7 +45,7 @@ form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 19px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
@@ -101,11 +101,13 @@ button:hover {
 #resultado {
     background-color: #f0dccc;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 19px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
     width: 100%;
     max-width: auto;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #resultado p {
