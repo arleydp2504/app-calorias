@@ -1,15 +1,23 @@
 document.getElementById('form-calorias').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    var peso = parseFloat(document.getElementById('peso').value);
-    var altura = parseFloat(document.getElementById('altura').value);
-    var idade = parseFloat(document.getElementById('idade').value);
+    // Função para substituir vírgula por ponto e garantir que o valor será convertido corretamente
+    function formatarValor(valor) {
+        var valorFormatado = valor.replace(',', '.');
+        return parseFloat(valorFormatado);
+    }
+
+    // Usar a função formatarValor para lidar com cada valor
+    var peso = formatarValor(document.getElementById('peso').value);
+    var altura = formatarValor(document.getElementById('altura').value);
+    var idade = formatarValor(document.getElementById('idade').value);
     var sexo = document.getElementById('sexo').value;
     var treinamento = document.getElementById('treinamento').value;
-    var batimento = parseFloat(document.getElementById('batimento').value);
-    var tempoExercicio = parseFloat(document.getElementById('tempo-exercicio').value);
-    var caloriasIngeridas = parseFloat(document.getElementById('calorias-ingeridas').value);
+    var batimento = formatarValor(document.getElementById('batimento').value);
+    var tempoExercicio = formatarValor(document.getElementById('tempo-exercicio').value);
+    var caloriasIngeridas = formatarValor(document.getElementById('calorias-ingeridas').value);
 
+    // Verifica se algum valor é inválido
     if (isNaN(peso) || isNaN(altura) || isNaN(idade) || isNaN(batimento) || isNaN(tempoExercicio) || isNaN(caloriasIngeridas)) {
         alert('Por favor, insira valores válidos.');
         return;
@@ -26,13 +34,13 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     // Definir o fator de calorias por batimento, de acordo com o sexo
     var fatorCaloriasPorBatimento;
     if (sexo === 'masculino') {
-        fatorCaloriasPorBatimento = 0.6309; 
+        fatorCaloriasPorBatimento = 0.6309;
     } else {
-        fatorCaloriasPorBatimento = 0.4472; 
+        fatorCaloriasPorBatimento = 0.4472;
     }
 
-    // Calcular a queima calórica baseada nos batimentos cardíacos (fórmula anterior)
-    var tempoExercicioHoras = tempoExercicio / 60; 
+    // Calcular a queima calórica baseada nos batimentos cardíacos
+    var tempoExercicioHoras = tempoExercicio / 60;
     var caloriasExercicioPorBatimentos = batimento * peso * tempoExercicioHoras * fatorCaloriasPorBatimento;
 
     const mets = {
@@ -62,8 +70,8 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 
     var caloriasExercicioComMET = met * peso * tempoExercicioHoras;
 
-    var fcMax = 220 - idade; 
-    var intensidade = (batimento / fcMax) * 100; 
+    var fcMax = 220 - idade;
+    var intensidade = (batimento / fcMax) * 100;
 
     if (intensidade >= 80) {
         caloriasExercicioComMET *= 1.2;  // Aumento de 20% se a intensidade for maior que 80% da FCmáx
@@ -71,6 +79,7 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
         caloriasExercicioComMET *= 1.1;  // Aumento de 10% se a intensidade for entre 50% e 80% da FCmáx
     }
 
+    // Exibir valores de calorias e metabolismo
     document.getElementById('metabolismo').innerText = metabolismoBasal.toFixed(2);
     document.getElementById('calorias-exercicio').innerText = caloriasExercicioComMET.toFixed(2);
 
@@ -89,7 +98,7 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 
     var deficitElement = document.getElementById('deficit-calorico');
     if (deficitCalorico < 0) {
-        deficitElement.style.color = 'green'; 
+        deficitElement.style.color = 'green';
         deficitElement.innerText = 'Déficit Calórico: ' + deficitCalorico.toFixed(2);
     } else {
         deficitElement.style.color = 'red';
@@ -97,34 +106,34 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     }
 
     // Cálculo do IMC
-    var alturaEmMetros = altura / 100; 
-    var imc = peso / (alturaEmMetros * alturaEmMetros); 
+    var alturaEmMetros = altura / 100;
+    var imc = peso / (alturaEmMetros * alturaEmMetros);
     var imcElement = document.getElementById('imc');
     imcElement.innerText = imc.toFixed(2);
 
     var imcDescricao = document.getElementById('imc-descricao');
     if (imc < 18.5) {
-        imcElement.style.color = 'blue'; 
+        imcElement.style.color = 'blue';
         imcDescricao.innerText = 'Abaixo do peso (IMC < 18.5)';
         imcDescricao.style.color = 'blue';
     } else if (imc >= 18.5 && imc <= 24.9) {
-        imcElement.style.color = 'green'; 
+        imcElement.style.color = 'green';
         imcDescricao.innerText = 'Peso normal (IMC entre 18.5 e 24.9)';
         imcDescricao.style.color = 'green';
     } else if (imc >= 25 && imc <= 29.9) {
-        imcElement.style.color = 'orange'; 
+        imcElement.style.color = 'orange';
         imcDescricao.innerText = 'Sobrepeso (IMC entre 25 e 29.9)';
         imcDescricao.style.color = 'orange';
     } else if (imc >= 30 && imc <= 34.9) {
-        imcElement.style.color = 'red'; 
+        imcElement.style.color = 'red';
         imcDescricao.innerText = 'Obesidade grau 1 (IMC entre 30 e 34.9)';
         imcDescricao.style.color = 'red';
     } else if (imc >= 35 && imc <= 39.9) {
-        imcElement.style.color = 'darkred'; 
+        imcElement.style.color = 'darkred';
         imcDescricao.innerText = 'Obesidade grau 2 (IMC entre 35 e 39.9)';
         imcDescricao.style.color = 'darkred';
     } else {
-        imcElement.style.color = 'purple'; 
+        imcElement.style.color = 'purple';
         imcDescricao.innerText = 'Obesidade grau 3 (IMC >= 40)';
         imcDescricao.style.color = 'purple';
     }
@@ -133,19 +142,12 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
 // Função de reset para limpar os campos e resultados
 document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('form-calorias').reset();
-    
+
     document.getElementById('metabolismo').innerText = '0';
     document.getElementById('calorias-exercicio').innerText = '0';
     document.getElementById('calorias-trabalho').innerText = '0';
     document.getElementById('calorias-gastas-totais').innerText = '0';
     document.getElementById('deficit-calorico').innerText = '0';
-    document.getElementById('imc').innerText = '0'; 
-    document.getElementById('imc-descricao').innerText = ''; 
-
+    document.getElementById('imc').innerText = '0';
+    document.getElementById('imc-descricao').innerText = '';
 });
-
-
-
-
-
-
