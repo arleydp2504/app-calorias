@@ -74,9 +74,9 @@ document.getElementById('form-calorias').addEventListener('submit', function(eve
     var intensidade = (batimento / fcMax) * 100;
 
     if (intensidade >= 80) {
-        caloriasExercicioComMET *= 1.2;  // Aumento de 20% se a intensidade for maior que 80% da FCmáx
+        caloriasExercicioComMET *= 1.1;  // Aumento de 10% se a intensidade for maior que 80% da FCmáx
     } else if (intensidade >= 50) {
-        caloriasExercicioComMET *= 1.1;  // Aumento de 10% se a intensidade for entre 50% e 80% da FCmáx
+        caloriasExercicioComMET *= 1.05;  // Aumento de 5% se a intensidade for entre 50% e 80% da FCmáx
     }
 
     // Exibir valores de calorias e metabolismo
