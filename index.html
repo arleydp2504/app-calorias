@@ -1,114 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#00CED1">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#00CED1">
-    <title>Calculadora de Calorias</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Calorias</title>
+
+  <meta name="theme-color" content="#00CED1">
+  <link rel="manifest" href="/manifest.json">
+
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div>
-        <h1>Calculadora de Calorias</h1>
-        <a href="https://www.instagram.com/arleypereira_personal/" target="_blank" rel="noopener noreferrer" class="instagram-link">
-            <img src="img/instagram.png" alt="Instagram" class="instagram-icon">Arley Personal</a>
 
-        <!-- Formulário de entrada para as calorias gastas com exercício -->
-        <form id="form-calorias">
-            <label for="peso">Peso (kg):</label>
-            <input type="text" id="peso" required><br>
+<div>
+  <h1>Calculadora de Calorias</h1>
 
-            <label for="altura">Altura (cm):</label>
-            <input type="number" id="altura" required><br>
+  <form id="form-calorias">
+    <label>Peso (kg)</label>
+    <input type="text" id="peso" required>
 
-            <label for="idade">Idade:</label>
-            <input type="number" id="idade" required><br>
+    <label>Altura (cm)</label>
+    <input type="number" id="altura" required>
 
-            <label for="sexo">Sexo:</label>
-            <select id="sexo" required>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-            </select><br>
+    <label>Idade</label>
+    <input type="number" id="idade" required>
 
-            <label for="treinamento">Tipo de Exercício:</label>
-            <select id="treinamento" required>
-                <option value="basquete">Basquete</option>
-                <option value="beach tennis">Beach tennis</option>
-                <option value="boxe">Boxe</option>
-                <option value="caminhada">Caminhada</option>
-                <option value="ciclismo">Ciclismo</option>
-                <option value="corrida">Corrida</option>
-                <option value="crossfit">Crossfit</option>
-                <option value="dança">Dança</option>
-                <option value="escalada">Escalada</option>
-                <option value="futevolei">Futevolei</option>
-                <option value="futebol">Futebol</option>
-                <option value="hiit">HIIT</option>
-                <option value="musculacao">Musculação</option>
-                <option value="natacao">Natação</option>
-                <option value="pilates">Pilates</option>
-                <option value="surf">Surfe</option>
-                <option value="tenis">Tênis</option>
-                <option value="treinamento_funcional">Treinamento Funcional</option>
-                <option value="volei">Voleibol</option>
-                <option value="yoga">Yoga</option>
-            </select><br>
+    <label>Sexo</label>
+    <select id="sexo">
+      <option value="masculino">Masculino</option>
+      <option value="feminino">Feminino</option>
+    </select>
 
-            <label for="batimento">Batimento Cardíaco Médio (bpm):</label>
-            <input type="number" id="batimento" required><br>
+    <label>Tempo de Exercício (min)</label>
+    <input type="number" id="tempo-exercicio" required>
 
-            <label for="tempo-exercicio">Tempo de Exercício (minutos):</label>
-            <input type="number" id="tempo-exercicio" required><br>
+    <button type="submit">Calcular</button>
+  </form>
 
-            <label for="calorias-ingeridas">Calorias Ingeridas (Plano nutricional):</label>
-            <input type="number" id="calorias-ingeridas" required><br>
+  <div id="resultado">
+    <p>Resultado aparecerá aqui</p>
+  </div>
+</div>
 
-            <label for="atividade">Selecione a Atividade no trabalho:</label>
-            <select id="atividade" required>
-                <option value="1.3">Leve (Sentado, trabalho de escritório)</option>
-                <option value="2.9">Moderado (Andando devagar, caminhando pelo escritório)</option>
-                <option value="4.0">Pesado (Carregando objetos pesados)</option>
-                <option value="5.5">Intenso (Fazendo tarefas físicas intensas)</option>
-            </select><br>
-
-            <label for="tempo-trabalho">Tempo de Atividade (em horas):</label>
-            <input type="number" id="tempo-trabalho" required><br>
-
-            <button type="submit">Calcular</button>
-        </form>
-
-        <div id="resultado">
-            <h2>Resultado</h2>
-            <p>Metabolismo Basal: <span id="metabolismo">0</span> kcal</p>
-            <p>Calorias Gastas no Exercício: <span id="calorias-exercicio">0</span> kcal</p>
-            <p>Calorias Gastas no Trabalho: <span id="calorias-trabalho">0</span> kcal</p>
-            <p>Calorias Gastas Totais: <span id="calorias-gastas-totais">0</span> kcal</p>
-            <p><span id="deficit-calorico">0</span> kcal</p>
-            <p>IMC: <span id="imc">0</span></p>
-            <p id="imc-descricao"></p> 
-            <p>Obs.: Valores estimados, não exatos.</p>
-        </div>
-
-        <!-- Botão de Reset -->
-        <button class="reset" type="button" id="reset-btn">Apagar</button>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Arley Pereira Personal. Todos os direitos reservados.</p>
-        <a href="https://www.instagram.com/neacode15/" target="_blank" rel="noopener noreferrer" class="instagram-link">
-            <img src="img/instagram.png" alt="Instagram" class="instagram-icon">N&A CODE
-        </a>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>
-
-
-
-
-
